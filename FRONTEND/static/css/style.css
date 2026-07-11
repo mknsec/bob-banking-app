@@ -1,0 +1,34 @@
+/* style.css — minimal custom overrides for the Banking App */
+
+/* Ensure the page fills the viewport height so the footer stays at the bottom */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f8fa;
+  min-height: 100vh;
+}
+
+main.container {
+  flex: 1;
+}
+
+/* Slightly tighten card borders */
+.card {
+  border-color: #e5e7eb;
+}
+
+/* Input focus ring to match brand blue */
+.form-control:focus {
+  border-color: #3b82d4;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 212, 0.25);
+}
+
+/* Balance display on dashboard */
+.display-4.text-success {
+  letter-spacing: -1px;
+}
