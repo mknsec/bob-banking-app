@@ -151,6 +151,22 @@ def deposit():
 
     if request.method == "POST":
         raw_amount = request.form.get("amount")
+
+        # --- Inline validation checks (before service/DB call) --------------
+        if not raw_amount or str(raw_amount).strip() == "":
+            error = "Amount is required"
+            return render_template("withdraw.html", error=error, balance=current_balance)
+        try:
+            _check = float(raw_amount)
+        except (ValueError, TypeError):
+            _check = 0
+        if _check <= 0:
+            error = "Amount must be greater than zero"
+            return render_template("withdraw.html", error=error, balance=current_balance)
+        if _check > current_balance:
+            error = "Insufficient funds"
+            return render_template("withdraw.html", error=error, balance=current_balance)
+
         amount, error = validate_amount(raw_amount)
 
         if error is None:
